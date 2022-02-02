@@ -13,7 +13,7 @@ import { Store } from '../utils/Store';
 // import useStyles from '../utils/styles';
 import CardLocation from '../components/CardLocation';
 
-export default function Home(props) {
+export default function Home() {
   // const classes = useStyles();
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
