@@ -38,7 +38,7 @@ import { useEffect } from 'react';
 export default function Layout({ title, description, children }) {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
-  const { darkMode, cart, userInfo } = state;
+  const { darkMode, userInfo } = state;
   const theme = createMuiTheme({
     typography: {
       h1: {
