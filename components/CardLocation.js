@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styles from '../styles/CardLocation.module.css'
-import opencage from 'opencage-api-client'
 
 export default function CardLocation() {
   
