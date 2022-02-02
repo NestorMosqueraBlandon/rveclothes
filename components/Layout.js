@@ -103,9 +103,9 @@ export default function Layout({ title, description, children }) {
     Cookies.set('darkMode', newDarkMode ? 'ON' : 'OFF');
   };
   const [anchorEl, setAnchorEl] = useState(null);
-  const loginClickHandler = (e) => {
-    setAnchorEl(e.currentTarget);
-  };
+  // const loginClickHandler = (e) => {
+  //   setAnchorEl(e.currentTarget);
+  // };
   const loginMenuCloseHandler = (e, redirect) => {
     setAnchorEl(null);
     if (redirect) {
