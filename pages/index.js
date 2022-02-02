@@ -10,7 +10,7 @@ import { useContext } from 'react';
 import { Store } from '../utils/Store';
 // import ProductItem from '../components/ProductItem';
 // import Carousel from 'react-material-ui-carousel';
-import useStyles from '../utils/styles';
+// import useStyles from '../utils/styles';
 import CardLocation from '../components/CardLocation';
 
 export default function Home(props) {
