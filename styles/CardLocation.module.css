@@ -1,0 +1,20 @@
+.card{
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+    border-radius: .5rem;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card i{
+    font-size: 2.5rem;
+
+}
+
+.card p{
+
+        color: rgba(0, 0, 0, .5);
+        font-size: 1.2rem;
+}

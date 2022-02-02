@@ -11,6 +11,7 @@ import { Store } from '../utils/Store';
 import ProductItem from '../components/ProductItem';
 import Carousel from 'react-material-ui-carousel';
 import useStyles from '../utils/styles';
+import CardLocation from '../components/CardLocation';
 
 export default function Home(props) {
   const classes = useStyles();
@@ -30,24 +31,8 @@ export default function Home(props) {
   };
   return (
     <Layout>
-      <Carousel className={classes.mt1} animation="slide">
-        {featuredProducts.map((product) => (
-          <NextLink
-            key={product._id}
-            href={`/product/${product.slug}`}
-            passHref
-          >
-            <Link>
-              <img
-                src={product.featuredImage}
-                alt={product.name}
-                className={classes.featuredImage}
-              ></img>
-            </Link>
-          </NextLink>
-        ))}
-      </Carousel>
-      <Typography variant="h2">Productos Populares</Typography>
+      <CardLocation />
+      {/* <Typography variant="h2">Productos Populares</Typography>
       <Grid container spacing={3}>
         {topRatedProducts.map((product) => (
           <Grid item md={4} key={product.name}>
@@ -57,7 +42,7 @@ export default function Home(props) {
             />
           </Grid>
         ))}
-      </Grid>
+      </Grid> */}
     </Layout>
   );
 }

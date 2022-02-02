@@ -1,0 +1,17 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.header button{
+    border: none;
+    background-color: transparent;
+    font-size: 3rem;
+}
+
+.header .logo{
+    font-size: 2rem;
+    font-weight: 600;
+}

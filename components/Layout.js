@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import Head from 'next/head';
-import NextLink from 'next/link';
+import React, { useContext } from "react";
+import Head from "next/head";
+import NextLink from "next/link";
 import {
   AppBar,
   Toolbar,
@@ -21,19 +21,21 @@ import {
   Divider,
   ListItemText,
   InputBase,
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import CancelIcon from '@material-ui/icons/Cancel';
-import SearchIcon from '@material-ui/icons/Search';
-import useStyles from '../utils/styles';
-import { Store } from '../utils/Store';
-import { getError } from '../utils/error';
-import Cookies from 'js-cookie';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { useSnackbar } from 'notistack';
-import axios from 'axios';
-import { useEffect } from 'react';
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import CancelIcon from "@material-ui/icons/Cancel";
+import SearchIcon from "@material-ui/icons/Search";
+import useStyles from "../utils/styles";
+import { Store } from "../utils/Store";
+import { getError } from "../utils/error";
+import Cookies from "js-cookie";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
+import axios from "axios";
+import { useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Layout({ title, description, children }) {
   const router = useRouter();
@@ -42,23 +44,23 @@ export default function Layout({ title, description, children }) {
   const theme = createMuiTheme({
     typography: {
       h1: {
-        fontSize: '1.6rem',
+        fontSize: "1.6rem",
         fontWeight: 400,
-        margin: '1rem 0',
+        margin: "1rem 0",
       },
       h2: {
-        fontSize: '1.4rem',
+        fontSize: "1.4rem",
         fontWeight: 400,
-        margin: '1rem 0',
+        margin: "1rem 0",
       },
     },
     palette: {
-      type: darkMode ? 'dark' : 'light',
+      type: darkMode ? "dark" : "light",
       primary: {
-        main: '#f0c000',
+        main: "#f0c000",
       },
       secondary: {
-        main: '#208080',
+        main: "#208080",
       },
     },
   });
@@ -80,11 +82,11 @@ export default function Layout({ title, description, children }) {
       const { data } = await axios.get(`/api/products/categories`);
       setCategories(data);
     } catch (err) {
-      enqueueSnackbar(getError(err), { variant: 'error' });
+      enqueueSnackbar(getError(err), { variant: "error" });
     }
   };
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const queryChangeHandler = (e) => {
     setQuery(e.target.value);
   };
@@ -98,9 +100,9 @@ export default function Layout({ title, description, children }) {
   }, []);
 
   const darkModeChangeHandler = () => {
-    dispatch({ type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON' });
+    dispatch({ type: darkMode ? "DARK_MODE_OFF" : "DARK_MODE_ON" });
     const newDarkMode = !darkMode;
-    Cookies.set('darkMode', newDarkMode ? 'ON' : 'OFF');
+    Cookies.set("darkMode", newDarkMode ? "ON" : "OFF");
   };
   const [anchorEl, setAnchorEl] = useState(null);
   // const loginClickHandler = (e) => {
@@ -114,176 +116,38 @@ export default function Layout({ title, description, children }) {
   };
   const logoutClickHandler = () => {
     setAnchorEl(null);
-    dispatch({ type: 'USER_LOGOUT' });
-    Cookies.remove('userInfo');
-    Cookies.remove('cartItems');
-    Cookies.remove('shippinhAddress');
-    Cookies.remove('paymentMethod');
-    router.push('/');
+    dispatch({ type: "USER_LOGOUT" });
+    Cookies.remove("userInfo");
+    Cookies.remove("cartItems");
+    Cookies.remove("shippinhAddress");
+    Cookies.remove("paymentMethod");
+    router.push("/");
   };
   return (
     <div>
       <Head>
-        <title>{title ? `${title} - Real Vision Clothes` : 'Real Vision Clothes'}</title>
-        <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'></link>
+        <title>
+          {title ? `${title} - Atope Store` : "Atope Store"}
+        </title>
+        <link
+          href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+          rel="stylesheet"
+        ></link>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
 
         {description && <meta name="description" content={description}></meta>}
       </Head>
-    
+
       <ThemeProvider theme={theme}>
+        <Header />
         <CssBaseline />
-        <AppBar position="static" className={classes.navbar}>
-          <Toolbar className={classes.toolbar}>
-            <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
-              <IconButton
-                edge="start"
-                aria-label="open drawer"
-                onClick={sidebarOpenHandler}
-                className={classes.menuButton}
-              >
-                <MenuIcon className={classes.navbarButton} />
-              </IconButton>
-              <NextLink href="/" passHref>
-                <Link>
-                  <h3 className="brand">HK Store</h3>
-                </Link>
-              </NextLink>
-              <Switch
-                checked={darkMode}
-                onChange={darkModeChangeHandler}
-              ></Switch>
-            </Box>
-            <Drawer
-              anchor="left"
-              open={sidbarVisible}
-              onClose={sidebarCloseHandler}
-            >
-              <List>
-                <ListItem>
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="space-between"
-                  >
-                    <Typography></Typography>
-                    <IconButton
-                      aria-label="close"
-                      onClick={sidebarCloseHandler}
-                    >
-                      <CancelIcon />
-                    </IconButton>
-                  </Box>
-                </ListItem>
-                <Divider light />
-                {categories.map((category) => (
-                  <NextLink
-                    key={category}
-                    href={`/search?category=${category}`}
-                    passHref
-                  >
-                    <ListItem
-                      button
-                      component="a"
-                      onClick={sidebarCloseHandler}
-                    >
-                      <ListItemText primary={category}></ListItemText>
-                    </ListItem>
-                  </NextLink>
-                ))}
-              </List>
-            </Drawer>
-
-            <div className={classes.searchSection}>
-              <form onSubmit={submitHandler} className={classes.searchForm}>
-                <InputBase
-                  name="query"
-                  className={classes.searchInput}
-                  placeholder="Search products"
-                  onChange={queryChangeHandler}
-                />
-                <IconButton
-                  type="submit"
-                  className={classes.iconButton}
-                  aria-label="search"
-                >
-                  <SearchIcon />
-                </IconButton>
-              </form>
-            </div>
-            <div>
-
-              {/* <NextLink href="/cart" passHref>
-                <Link>
-                  <Typography component="span">
-                    {cart.cartItems.length > 0 ? (
-                      <Badge
-                        color="secondary"
-                        badgeContent={cart.cartItems.length}
-                      >
-                        <i class='bx bx-cart'></i>
-                      </Badge>
-                    ) : (
-                      <i class='bx bx-cart'></i>
-                    )}
-                  </Typography>
-                </Link>
-              </NextLink> */}
-              {userInfo ? (
-                <>
-                  {/* <Button
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                    onClick={loginClickHandler}
-                    className={classes.navbarButton}
-                  >
-                    {userInfo.name}
-                  </Button> */}
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={loginMenuCloseHandler}
-                  >
-                    <MenuItem
-                      onClick={(e) => loginMenuCloseHandler(e, '/profile')}
-                    >
-                      Profile
-                    </MenuItem>
-                    <MenuItem
-                      onClick={(e) =>
-                        loginMenuCloseHandler(e, '/order-history')
-                      }
-                    >
-                      Order Hisotry
-                    </MenuItem>
-                    {userInfo.isAdmin && (
-                      <MenuItem
-                        onClick={(e) =>
-                          loginMenuCloseHandler(e, '/admin/dashboard')
-                        }
-                      >
-                        Admin Dashboard
-                      </MenuItem>
-                    )}
-                    <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
-                  </Menu>
-                </>
-              ) : (
-                  <div></div>
-                // <NextLink href="/login" passHref>
-                //   <Link>
-                //     <Typography component="span">Login</Typography>
-                //   </Link>
-                // </NextLink>
-              )}
-            </div>
-          </Toolbar>
-        </AppBar>
         <Container className={classes.main}>{children}</Container>
-        <footer className={classes.footer}>
-          <Typography>All rights reserved. Real Vision Enterprise.</Typography>
-        </footer>
+        <Footer />
       </ThemeProvider>
     </div>
   );
