@@ -41,7 +41,7 @@ export default function CardLocation() {
 
     return (
       <div className={styles.card}>
-        <i class='bx bx-map' ></i>
+        <i className='bx bx-map' ></i>
         <div>
             <p>Ubicacion</p>
             <h2>{text}</h2>

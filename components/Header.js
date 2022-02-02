@@ -7,7 +7,7 @@ import { Store } from "../utils/Store";
 
 export default function Header() {
   const { state, dispatch } = useContext(Store);
-  const { darkMode, userInfo } = state;
+  const { darkMode } = state;
 
   const darkModeChangeHandler = () => {
     dispatch({ type: darkMode ? "DARK_MODE_OFF" : "DARK_MODE_ON" });
