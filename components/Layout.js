@@ -11,11 +11,11 @@ import useStyles from "../utils/styles";
 import { Store } from "../utils/Store";
 import { getError } from "../utils/error";
 // import Cookies from "js-cookie";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { useSnackbar } from "notistack";
-import axios from "axios";
-import { useEffect } from "react";
+// import { useState } from "react";
+// import { useRouter } from "next/router";
+// import { useSnackbar } from "notistack";
+// import axios from "axios";
+// import { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
