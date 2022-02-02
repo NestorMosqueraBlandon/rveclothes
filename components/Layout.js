@@ -20,9 +20,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 export default function Layout({ title, description, children }) {
-  const router = useRouter();
-  const { state, dispatch } = useContext(Store);
-  const { darkMode, userInfo } = state;
+  // const router = useRouter();
+  const { state} = useContext(Store);
+  const { darkMode } = state;
   const theme = createMuiTheme({
     typography: {
       h1: {
@@ -56,19 +56,19 @@ export default function Layout({ title, description, children }) {
   //   setSidebarVisible(false);
   // };
 
-  const [categories, setCategories] = useState([]);
-  const { enqueueSnackbar } = useSnackbar();
+  // const [categories, setCategories] = useState([]);
+  // const { enqueueSnackbar } = useSnackbar();
 
-  const fetchCategories = async () => {
-    try {
-      const { data } = await axios.get(`/api/products/categories`);
-      setCategories(data);
-    } catch (err) {
-      enqueueSnackbar(getError(err), { variant: "error" });
-    }
-  };
+  // const fetchCategories = async () => {
+  //   try {
+  //     const { data } = await axios.get(`/api/products/categories`);
+  //     setCategories(data);
+  //   } catch (err) {
+  //     enqueueSnackbar(getError(err), { variant: "error" });
+  //   }
+  // };
 
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   // const queryChangeHandler = (e) => {
   //   setQuery(e.target.value);
   // };
@@ -77,16 +77,16 @@ export default function Layout({ title, description, children }) {
   //   router.push(`/search?query=${query}`);
   // };
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  // useEffect(() => {
+  //   fetchCategories();
+  // }, []);
 
   // const darkModeChangeHandler = () => {
   //   dispatch({ type: darkMode ? "DARK_MODE_OFF" : "DARK_MODE_ON" });
   //   const newDarkMode = !darkMode;
   //   Cookies.set("darkMode", newDarkMode ? "ON" : "OFF");
   // };
-  const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEl, setAnchorEl] = useState(null);
   // const loginClickHandler = (e) => {
   //   setAnchorEl(e.currentTarget);
   // };

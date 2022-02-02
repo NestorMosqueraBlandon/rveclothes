@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <button>
-        <i class="bx bx-menu"></i>
+        <i className="bx bx-menu"></i>
       </button>
       <div className={styles.logo}>atope</div>
       <Switch checked={darkMode} onChange={darkModeChangeHandler}></Switch>
