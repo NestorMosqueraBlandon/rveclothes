@@ -11,6 +11,7 @@ import axios from "axios";
 import { Store } from "../../utils/Store";
 import { getError } from "../../utils/error";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { useSnackbar } from "notistack";
 import styles from "../../styles/Product.module.css";
 
