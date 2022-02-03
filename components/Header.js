@@ -38,7 +38,7 @@ export default function Header({back}) {
         <div className={styles.logo}></div>
         ): 
         (
-        <div className={styles.logo}> atope</div>
+        <div className={styles.logo}> Vas-IN</div>
 
       )}
       <div></div>
