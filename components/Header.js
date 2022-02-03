@@ -1,9 +1,9 @@
 // import { Switch } from "@material-ui/core";
 // import Cookies from "js-cookie";
 import React from "react";
-import { useContext } from "react";
+// import { useContext } from "react";
 import styles from "../styles/Header.module.css";
-import { Store } from "../utils/Store";
+// import { Store } from "../utils/Store";
 import Link from "next/link";
 
 export default function Header({back}) {
