@@ -1,16 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import NextLink from "next/link";
-import Image from "next/image";
 import {
-  Grid,
   Link,
-  List,
-  ListItem,
-  Typography,
-  Card,
-  Button,
-  TextField,
-  CircularProgress,
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import Layout from "../../components/Layout";
@@ -23,14 +13,13 @@ import { getError } from "../../utils/error";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import styles from "../../styles/Product.module.css";
-import Home from "..";
 
 export default function ProductScreen(props) {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { userInfo } = state;
   const { product } = props;
-  const classes = useStyles();
+  // const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
   const [reviews, setReviews] = useState([]);
@@ -38,28 +27,28 @@ export default function ProductScreen(props) {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await axios.post(
-        `/api/products/${product._id}/reviews`,
-        {
-          rating,
-          comment,
-        },
-        {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-      setLoading(false);
-      enqueueSnackbar("Review submitted successfully", { variant: "success" });
-      fetchReviews();
-    } catch (err) {
-      setLoading(false);
-      enqueueSnackbar(getError(err), { variant: "error" });
-    }
-  };
+  // const submitHandler = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   try {
+  //     await axios.post(
+  //       `/api/products/${product._id}/reviews`,
+  //       {
+  //         rating,
+  //         comment,
+  //       },
+  //       {
+  //         headers: { authorization: `Bearer ${userInfo.token}` },
+  //       }
+  //     );
+  //     setLoading(false);
+  //     enqueueSnackbar("Review submitted successfully", { variant: "success" });
+  //     fetchReviews();
+  //   } catch (err) {
+  //     setLoading(false);
+  //     enqueueSnackbar(getError(err), { variant: "error" });
+  //   }
+  // };
 
   const fetchReviews = async () => {
     try {
