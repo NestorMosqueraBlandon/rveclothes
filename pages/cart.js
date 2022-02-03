@@ -7,12 +7,12 @@ import {
   Link,
 } from '@material-ui/core';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import styles from '../styles/Cart.module.css'
 import DivisaFormater from '../components/DivisaFormater';
 
 function CartScreen() {
-  const router = useRouter();
+  // const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const {
     cart: { cartItems },
