@@ -1,0 +1,35 @@
+.card{
+    /* margin-top: 4rem; */
+    background-color: #FFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+    width: 46%;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.card:last-child{
+    margin-bottom: 8rem;
+}
+
+.card img{
+    width: 100%;
+}
+
+.card h2{
+    font-size: 1.4rem;
+    margin-bottom: .3rem;
+}
+
+.card button{
+    width: 100%;
+    margin-top: 1rem;
+    border: none;
+    background-color: #4169e1;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: #FFF;
+}
+
+.card span{
+    font-size: 1.4rem;
+}

@@ -4,8 +4,9 @@ import React from "react";
 import { useContext } from "react";
 import styles from "../styles/Header.module.css";
 import { Store } from "../utils/Store";
+import Link from "next/link";
 
-export default function Header() {
+export default function Header({back}) {
   const { state, dispatch } = useContext(Store);
   const { darkMode } = state;
 
@@ -16,11 +17,28 @@ export default function Header() {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={back? styles.headerBack : styles.header}>
       <button>
-        <i className="bx bx-menu"></i>
+        {back ? 
+      (
+        <Link href="/">
+        <a>
+          <i class='bx bx-arrow-back'></i>
+        </a>
+        </Link>
+        ) :
+        (
+          <i className="bx bx-menu"></i>
+       ) 
+      }
       </button>
-      <div className={styles.logo}>atope</div>
+      {back ? (
+        <div className={styles.logo}></div>
+        ): 
+        (
+        <div className={styles.logo}> atope</div>
+
+      )}
       <Switch checked={darkMode} onChange={darkModeChangeHandler}></Switch>
     </header>
   );

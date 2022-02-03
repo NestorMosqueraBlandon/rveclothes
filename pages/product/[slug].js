@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import NextLink from 'next/link';
-import Image from 'next/image';
+import React, { useContext, useEffect, useState } from "react";
+import NextLink from "next/link";
+import Image from "next/image";
 import {
   Grid,
   Link,
@@ -11,17 +11,19 @@ import {
   Button,
   TextField,
   CircularProgress,
-} from '@material-ui/core';
-import Rating from '@material-ui/lab/Rating';
-import Layout from '../../components/Layout';
-import useStyles from '../../utils/styles';
-import Product from '../../models/Product';
-import db from '../../utils/db';
-import axios from 'axios';
-import { Store } from '../../utils/Store';
-import { getError } from '../../utils/error';
-import { useRouter } from 'next/router';
-import { useSnackbar } from 'notistack';
+} from "@material-ui/core";
+import Rating from "@material-ui/lab/Rating";
+import Layout from "../../components/Layout";
+import useStyles from "../../utils/styles";
+import Product from "../../models/Product";
+import db from "../../utils/db";
+import axios from "axios";
+import { Store } from "../../utils/Store";
+import { getError } from "../../utils/error";
+import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
+import styles from "../../styles/Product.module.css";
+import Home from "..";
 
 export default function ProductScreen(props) {
   const router = useRouter();
@@ -33,7 +35,7 @@ export default function ProductScreen(props) {
 
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
 
   const submitHandler = async (e) => {
@@ -51,11 +53,11 @@ export default function ProductScreen(props) {
         }
       );
       setLoading(false);
-      enqueueSnackbar('Review submitted successfully', { variant: 'success' });
+      enqueueSnackbar("Review submitted successfully", { variant: "success" });
       fetchReviews();
     } catch (err) {
       setLoading(false);
-      enqueueSnackbar(getError(err), { variant: 'error' });
+      enqueueSnackbar(getError(err), { variant: "error" });
     }
   };
 
@@ -64,7 +66,7 @@ export default function ProductScreen(props) {
       const { data } = await axios.get(`/api/products/${product._id}/reviews`);
       setReviews(data);
     } catch (err) {
-      enqueueSnackbar(getError(err), { variant: 'error' });
+      enqueueSnackbar(getError(err), { variant: "error" });
     }
   };
   useEffect(() => {
@@ -79,168 +81,138 @@ export default function ProductScreen(props) {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
+      window.alert("Sorry. Product is out of stock");
       return;
     }
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-    router.push('/cart');
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
+    router.push("/cart");
   };
 
-  return (
-    <Layout title={product.name} description={product.description}>
-      <div className={classes.section}>
-        <NextLink href="/" passHref>
-          <Link>
-            <Typography>Volver</Typography>
-          </Link>
-        </NextLink>
-      </div>
-      <Grid container spacing={1}>
-        <Grid item md={6} xs={12}>
-          <Image
-            src={product.image}
-            alt={product.name}
-            width={640}
-            height={640}
-            layout="responsive"
-          ></Image>
-        </Grid>
-        <Grid item md={3} xs={12}>
-          <List>
-            <ListItem>
-              <Typography component="h1" variant="h1">
-                {product.name}
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography>Categoria: {product.category}</Typography>
-            </ListItem>
-            <ListItem>
-              <Typography>Marca: {product.brand}</Typography>
-            </ListItem>
-            <ListItem>
-              <Rating value={product.rating} readOnly></Rating>
-              <Link href="#reviews">
-                <Typography>({product.numReviews} resenas)</Typography>
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Typography> Descripcion: {product.description}</Typography>
-            </ListItem>
-          </List>
-        </Grid>
-        <Grid item md={3} xs={12}>
-          <Card>
-            <List>
-              <ListItem>
-                <Grid container>
-                  <Grid item xs={6}>
-                    <Typography>Precio</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography>${product.price}</Typography>
-                  </Grid>
-                </Grid>
-              </ListItem>
-              <ListItem>
-                <Grid container>
-                  <Grid item xs={6}>
-                    <Typography>Estado</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography>
-                      {product.countInStock > 0 ? 'Disponible' : 'Agotado'}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </ListItem>
-              <ListItem>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="secondary"
-                  onClick={addToCartHandler}
-                >
-                  Anadir al carrito
-                </Button>
-              </ListItem>
-            </List>
-          </Card>
-        </Grid>
-      </Grid>
-      <List>
-        <ListItem>
-          <Typography name="reviews" id="reviews" variant="h2">
-            Resenas de clientes
-          </Typography>
-        </ListItem>
-        {reviews.length === 0 && <ListItem>No review</ListItem>}
-        {reviews.map((review) => (
-          <ListItem key={review._id}>
-            <Grid container>
-              <Grid item className={classes.reviewItem}>
-                <Typography>
-                  <strong>{review.name}</strong>
-                </Typography>
-                <Typography>{review.createdAt.substring(0, 10)}</Typography>
-              </Grid>
-              <Grid item>
-                <Rating value={review.rating} readOnly></Rating>
-                <Typography>{review.comment}</Typography>
-              </Grid>
-            </Grid>
-          </ListItem>
-        ))}
-        <ListItem>
-          {userInfo ? (
-            <form onSubmit={submitHandler} className={classes.reviewForm}>
-              <List>
-                <ListItem>
-                  <Typography variant="h2">Deja tu resena</Typography>
-                </ListItem>
-                <ListItem>
-                  <TextField
-                    multiline
-                    variant="outlined"
-                    fullWidth
-                    name="review"
-                    label="Escribe tu comentario"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                  />
-                </ListItem>
-                <ListItem>
-                  <Rating
-                    name="simple-controlled"
-                    value={rating}
-                    onChange={(e) => setRating(e.target.value)}
-                  />
-                </ListItem>
-                <ListItem>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="secondary"
-                  >
-                    Enviar
-                  </Button>
+  const [text, setText] = useState("");
 
-                  {loading && <CircularProgress></CircularProgress>}
-                </ListItem>
-              </List>
-            </form>
-          ) : (
-            <Typography variant="h2">
-              Porfavor{' '}
+  useEffect(() => {
+    const onSuccess = async (position) => {
+      const { latitude, longitude } = position.coords;
+
+      const response = await fetch(
+        `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=4f99fa44f4f4435db7411d3f72b3c8f7&language=es&pretty=1            `
+      );
+      const result = await response.json();
+      const { city, country, state } = result.results[0].components;
+
+      setText(city + ", " + state + ", " + country);
+    };
+    const onError = (error) => {
+      if (error.code == 1) {
+        setText("Has denegado la peticion");
+      } else if (error.code == 2) {
+        setText("Ubicacion no disp");
+      } else {
+        setText("Algo salio mal");
+      }
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    } else {
+      setText("Tu navegador no soporta la geolocalizacion");
+    }
+  }, []);
+
+  return (
+    <Layout
+      back
+      title={product.name}
+      description={product.description}
+      price={product.price}
+      addToCartHandler={addToCartHandler}
+      product={product}
+    >
+      <div className={styles.container}>
+        <picture>
+          <img src={product.image} alt={product.name} />
+        </picture>
+        <div className={styles.bottomCard}>
+          <div className={styles.section}>
+            <div className={styles.bottomCardheader}>
+              <p>{product.brand}</p>
+              <span>Real Vision</span>
+            </div>
+            <h2 className={styles.title}>{product.name}</h2>
+            <span className={styles.rating}>
+              <Rating value={product.rating} readOnly></Rating>{" "}
+              <p>{product.numReviews} resenas </p>
+            </span>
+
+            <div className={styles.flex}>
+              <div>
+                <i className="bx bx-map"></i>
+                <span>{text}</span>
+              </div>
+              <div>
+                <p>Envio Gratis</p>
+              </div>
+            </div>
+
+            <div className={styles.flex}>
+              <p className={styles.amount}>
+                Cantidad:{" "}
+                <select name="" id="">
+                  <option value="">1</option>
+                  <option value="">2</option>
+                  <option value="">3</option>
+                  <option value="">4</option>
+                  <option value="">5</option>
+                  <option value="">6</option>
+                </select>
+              </p>
+
+              {product.countInStock > 0 ? (
+                <p className={styles.availible}>Disponible</p>
+              ) : (
+                <p className={styles.noavailible}>Agotado</p>
+              )}
+            </div>
+          </div>
+
+          <div className={styles.section}>
+            <h2>Talla</h2>
+              <ul>
+                <li><button>S</button></li>
+                <li><button className={styles.selected}>M</button></li>
+                <li><button>L</button></li>
+                <li><button>XL</button></li>
+
+              </ul>
+          </div>
+
+          <div className={styles.section}>
+               <h2>Descripcion</h2>   
+               <p>{product.description}</p>
+          </div>
+
+          <div className={styles.section}>
+            {userInfo? 
+            (
+              <div className={styles.review}>
+                <h2 className={styles.textCenter}>Deja tu resena</h2>
+                <textarea name="" id="" aria-multiline cols="30" rows="10" placeholder="Ingresa un comentario"></textarea>
+              </div>
+            ):
+            (
+              <p>
+              Porfavor
               <Link href={`/login?redirect=/product/${product.slug}`}>
-                inicia sesion
-              </Link>{' '}
+                Inicia sesion
+              </Link>
               para escribir una resena
-            </Typography>
-          )}
-        </ListItem>
-      </List>
+              </p>
+            )
+
+            }
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }
@@ -250,7 +222,7 @@ export async function getServerSideProps(context) {
   const { slug } = params;
 
   await db.connect();
-  const product = await Product.findOne({ slug }, '-reviews').lean();
+  const product = await Product.findOne({ slug }, "-reviews").lean();
   await db.disconnect();
   return {
     props: {

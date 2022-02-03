@@ -9,7 +9,7 @@
     font-size: 2.5rem;
     border-radius: 1rem;
     margin: 0 auto;
-    position: absolute;
+    position: fixed;
     bottom: 2%;
     left: 5%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
@@ -17,5 +17,32 @@
 }
 
 
-.list{
+.list button{
+    /* width: 100%; */
+    margin-top: 1rem;
+    border: none;
+    background-color: #4169e1;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: #FFF;
+    cursor: pointer;
+}
+
+
+.list span{
+    font-size: 1.8rem;
+}
+
+.footerListTwo{
+}
+
+.footerListTwo .list:first-child{
+    bottom: 70px;
+    border-radius: 1rem 1rem 0 0;
+    /* height: 50px; */
+    
+}
+
+.footerListTwo .list:last-child{
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
 }

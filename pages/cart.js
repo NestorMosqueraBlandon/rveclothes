@@ -23,6 +23,8 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import styles from '../styles/Cart.module.css'
+import DivisaFormater from '../components/DivisaFormater';
 
 function CartScreen() {
   const router = useRouter();
@@ -45,108 +47,39 @@ function CartScreen() {
     router.push('/shipping');
   };
   return (
-    <Layout title="Shopping Cart">
-      <Typography component="h1" variant="h1">
-        Shopping Cart
-      </Typography>
-      {cartItems.length === 0 ? (
+    <Layout title="Carrito" type={2} subtotal={cartItems.reduce((a, c) => a + c.quantity * c.price, 0)} >
+      <h2 className={styles.title}>Carrito <span>({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
+                    items) </span></h2>
+                    {cartItems.length === 0 ? (
         <div>
-          Cart is empty.{' '}
+          El carrito esta vacio
           <NextLink href="/" passHref>
-            <Link>Go shopping</Link>
+            <Link>Ir a comprar</Link>
           </NextLink>
         </div>
       ) : (
-        <Grid container spacing={1}>
-          <Grid item md={9} xs={12}>
-            <TableContainer>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Image</TableCell>
-                    <TableCell>Name</TableCell>
-                    <TableCell align="right">Quantity</TableCell>
-                    <TableCell align="right">Price</TableCell>
-                    <TableCell align="right">Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {cartItems.map((item) => (
-                    <TableRow key={item._id}>
-                      <TableCell>
-                        <NextLink href={`/product/${item.slug}`} passHref>
-                          <Link>
-                            <Image
-                              src={item.image}
-                              alt={item.name}
-                              width={50}
-                              height={50}
-                            ></Image>
-                          </Link>
-                        </NextLink>
-                      </TableCell>
-
-                      <TableCell>
-                        <NextLink href={`/product/${item.slug}`} passHref>
-                          <Link>
-                            <Typography>{item.name}</Typography>
-                          </Link>
-                        </NextLink>
-                      </TableCell>
-                      <TableCell align="right">
-                        <Select
-                          value={item.quantity}
-                          onChange={(e) =>
-                            updateCartHandler(item, e.target.value)
-                          }
-                        >
-                          {[...Array(item.countInStock).keys()].map((x) => (
-                            <MenuItem key={x + 1} value={x + 1}>
-                              {x + 1}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </TableCell>
-                      <TableCell align="right">${item.price}</TableCell>
-                      <TableCell align="right">
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          onClick={() => removeItemHandler(item)}
-                        >
-                          x
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-          <Grid item md={3} xs={12}>
-            <Card>
-              <List>
-                <ListItem>
-                  <Typography variant="h2">
-                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                    items) : $
-                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
-                  </Typography>
-                </ListItem>
-                <ListItem>
-                  <Button
-                    onClick={checkoutHandler}
-                    variant="contained"
-                    color="secondary"
-                    fullWidth
-                  >
-                    Check Out
-                  </Button>
-                </ListItem>
-              </List>
-            </Card>
-          </Grid>
-        </Grid>
+        <div className={styles.container}>
+          {cartItems.map((item) => (
+          <div className={styles.box}>
+            <div className={styles.boxHeader}>
+             <h3>{item.name}</h3>
+             <span>Marca: {item.brand}</span>
+            </div>
+            <div className={styles.boxContent}>
+              <picture>
+                <img src={item.image} alt={item.name} />
+              </picture>
+              <div>
+                <span className={styles.flexLeft}><p className={styles.availible}>Disponible</p> <p className={styles.send}>Envio Gratis</p></span>
+                <span className={styles.amount}>Cantidad: {item.quantity > 1?  <button onClick={() => updateCartHandler(item, item.quantity -1)}><i class='bx bx-minus-circle' ></i></button> : <button onClick={() => removeItemHandler(item)}><i class='bx bx-trash'></i> </button> } <span>{item.quantity} </span>  <button><i class='bx bx-plus' ></i> </button> </span>
+              </div>
+            </div>
+            <div className={styles.boxFooter}>
+                <DivisaFormater value={item.price * item.quantity} />
+            </div>
+          </div>
+          ))}
+        </div>
       )}
     </Layout>
   );

@@ -28,7 +28,18 @@ a {
   box-sizing: border-box;
 }
 
+.container{
+  padding: 2rem;
+}
 
+.grid{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+}
 .MuiButton-containedSecondary{
   background-color:#4169e1 !important;
 }
@@ -47,4 +58,9 @@ a {
 
 .brand{
   color: #f2f6fa;
+}
+
+.title{
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }

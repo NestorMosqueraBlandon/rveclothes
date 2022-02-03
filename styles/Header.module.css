@@ -3,6 +3,17 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    width: 100%;
+    background-color: #F7F7F7;
+}
+
+.headerBack{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+    background-color: #FFF;
 }
 
 .header button{
@@ -12,6 +23,17 @@
 }
 
 .header .logo{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.headerBack button{
+    border: none;
+    background-color: transparent;
+    font-size: 3rem;
+}
+
+.headerBack .logo{
     font-size: 2rem;
     font-weight: 600;
 }
