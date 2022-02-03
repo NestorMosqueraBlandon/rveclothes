@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 import NextLink from 'next/link';
+import Image from 'next/image';
 import {
   Link,
 } from '@material-ui/core';
@@ -52,7 +53,7 @@ function CartScreen() {
             </div>
             <div className={styles.boxContent}>
               <picture>
-                <img src={item.image} alt={item.name} />
+                <Image src={item.image} alt={item.name} />
               </picture>
               <div>
                 <span className={styles.flexLeft}><p className={styles.availible}>Disponible</p> <p className={styles.send}>Envio Gratis</p></span>
