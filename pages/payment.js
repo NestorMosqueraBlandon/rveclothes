@@ -65,11 +65,11 @@ export default function Payment() {
                   value="MercadoPago"
                   control={<Radio />}
                 ></FormControlLabel>
-                <FormControlLabel
+                {/* <FormControlLabel
                   label="Transferencia"
                   value="Transferencia"
                   control={<Radio />}
-                ></FormControlLabel>
+                ></FormControlLabel> */}
               </RadioGroup>
             </FormControl>
           </ListItem>
