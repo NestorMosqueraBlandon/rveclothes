@@ -4,7 +4,7 @@ import {
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import Layout from "../../components/Layout";
-import useStyles from "../../utils/styles";
+// import useStyles from "../../utils/styles";
 import Product from "../../models/Product";
 import db from "../../utils/db";
 import axios from "axios";
@@ -23,9 +23,9 @@ export default function ProductScreen(props) {
   const { enqueueSnackbar } = useSnackbar();
 
   const [reviews, setReviews] = useState([]);
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [rating, setRating] = useState(0);
+  // const [comment, setComment] = useState("");
+  // const [loading, setLoading] = useState(false);
 
   // const submitHandler = async (e) => {
   //   e.preventDefault();
