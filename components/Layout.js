@@ -2,12 +2,11 @@ import React, { useContext } from "react";
 import Head from "next/head";
 import {
 
-  Container,
   createMuiTheme,
   ThemeProvider,
   CssBaseline,
 } from "@material-ui/core";
-import useStyles from "../utils/styles";
+// import useStyles from "../utils/styles";
 import { Store } from "../utils/Store";
 // import { getError } from "../utils/error";
 // import Cookies from "js-cookie";
@@ -46,7 +45,7 @@ export default function Layout({ title, description, children, back, price, type
       },
     },
   });
-  const classes = useStyles();
+  // const classes = useStyles();
 
   // const [sidbarVisible, setSidebarVisible] = useState(false);
   // const sidebarOpenHandler = () => {

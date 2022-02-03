@@ -52,7 +52,7 @@ export default function ProductScreen(props) {
 
   const fetchReviews = async () => {
     try {
-      const { data } = await axios.get(`/api/products/${product._id}/reviews`);
+      // const { data } = await axios.get(`/api/products/${product._id}/reviews`);
       // setReviews(data);
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: "error" });
