@@ -15,7 +15,6 @@ import Layout from '../components/Layout';
 import db from '../utils/db';
 import Product from '../models/Product';
 import useStyles from '../utils/styles';
-import ProductItem from '../components/ProductItem';
 import ProductCard from '../components/ProductCard';
 import { Store } from '../utils/Store';
 import axios from 'axios';
