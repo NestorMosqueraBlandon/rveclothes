@@ -22,7 +22,7 @@ export default function ProductScreen(props) {
   // const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
-  const [reviews, setReviews] = useState([]);
+  // const [reviews, setReviews] = useState([]);
   // const [rating, setRating] = useState(0);
   // const [comment, setComment] = useState("");
   // const [loading, setLoading] = useState(false);
@@ -53,7 +53,7 @@ export default function ProductScreen(props) {
   const fetchReviews = async () => {
     try {
       const { data } = await axios.get(`/api/products/${product._id}/reviews`);
-      setReviews(data);
+      // setReviews(data);
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: "error" });
     }

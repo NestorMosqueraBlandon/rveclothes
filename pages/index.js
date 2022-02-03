@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import db from '../utils/db';
 import Product from '../models/Product';
 import axios from 'axios';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { Store } from '../utils/Store';
 // import ProductItem from '../components/ProductItem';
@@ -15,7 +15,7 @@ import ProductCard from '../components/ProductCard';
 
 export default function Home(props) {
   // const classes = useStyles();
-  // const router = useRouter();
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { topRatedProducts } = props;
   const addToCartHandler = async (product) => {
