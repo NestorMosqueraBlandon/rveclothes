@@ -82,3 +82,18 @@ a {
 
   }
 }
+
+.spand{
+  padding-bottom: 6rem;
+  /* margin-bottom: 5rem; */
+}
+
+.btn-success{
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  border-radius: .5rem;
+  color: #f2f6fa;
+  background-color: #4169e1;
+  cursor: pointer;
+}

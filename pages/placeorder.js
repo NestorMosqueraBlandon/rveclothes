@@ -41,8 +41,8 @@ function PlaceOrder() {
   const itemsPrice = round2(
     cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
   );
-  const shippingPrice = itemsPrice > 200 ? 0 : 15;
-  const taxPrice = round2(itemsPrice * 0.15);
+  const shippingPrice = itemsPrice > 50000 ? 0 : 15;
+  const taxPrice = 0;
   const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
 
   useEffect(() => {
@@ -87,6 +87,8 @@ function PlaceOrder() {
   };
   return (
     <Layout title="Place Order" type={1}>
+      <div className='spand'>
+
       <CheckoutWizard activeStep={3}></CheckoutWizard>
       <Typography component="h1" variant="h1">
         Realizar Pedido
@@ -243,6 +245,8 @@ function PlaceOrder() {
           </Card>
         </Grid>
       </Grid>
+      </div>
+
     </Layout>
   );
 }
