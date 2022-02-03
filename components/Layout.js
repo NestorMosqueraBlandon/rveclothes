@@ -18,7 +18,7 @@ import { Store } from "../utils/Store";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function Layout({ title, description, children, back, price, type, addToCartHandler, product, subtotal }) {
+export default function Layout({ title, description, children, back, price, type, addToCartHandler, product, subtotal, checkoutHandler }) {
   // const router = useRouter();
   const { state} = useContext(Store);
   const { darkMode } = state;
@@ -131,7 +131,7 @@ export default function Layout({ title, description, children, back, price, type
         <div className="container">
           {children}
         </div>
-        <Footer subtotal={subtotal} type={type} price={price} addToCartHandler={addToCartHandler} product={product} />
+        <Footer subtotal={subtotal} type={type} price={price} addToCartHandler={addToCartHandler} product={product} checkoutHandler={checkoutHandler} />
       </ThemeProvider>
     </div>
   );

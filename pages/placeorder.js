@@ -27,6 +27,7 @@ import CheckoutWizard from '../components/CheckoutWizard';
 import { useSnackbar } from 'notistack';
 import { getError } from '../utils/error';
 import Cookies from 'js-cookie';
+import DivisaFormater from '../components/DivisaFormater';
 
 function PlaceOrder() {
   const classes = useStyles();
@@ -85,10 +86,10 @@ function PlaceOrder() {
     }
   };
   return (
-    <Layout title="Place Order">
+    <Layout title="Place Order" type={1}>
       <CheckoutWizard activeStep={3}></CheckoutWizard>
       <Typography component="h1" variant="h1">
-        Place Order
+        Realizar Pedido
       </Typography>
 
       <Grid container spacing={1}>
@@ -97,7 +98,7 @@ function PlaceOrder() {
             <List>
               <ListItem>
                 <Typography component="h2" variant="h2">
-                  Shipping Address
+                  Direccion de Envio
                 </Typography>
               </ListItem>
               <ListItem>
@@ -111,7 +112,7 @@ function PlaceOrder() {
             <List>
               <ListItem>
                 <Typography component="h2" variant="h2">
-                  Payment Method
+                  Metodo de Pago
                 </Typography>
               </ListItem>
               <ListItem>{paymentMethod}</ListItem>
@@ -121,7 +122,7 @@ function PlaceOrder() {
             <List>
               <ListItem>
                 <Typography component="h2" variant="h2">
-                  Order Items
+                  Articulos
                 </Typography>
               </ListItem>
               <ListItem>
@@ -129,10 +130,10 @@ function PlaceOrder() {
                   <Table>
                     <TableHead>
                       <TableRow>
-                        <TableCell>Image</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell align="right">Quantity</TableCell>
-                        <TableCell align="right">Price</TableCell>
+                        <TableCell>Imagen</TableCell>
+                        <TableCell>Nombre</TableCell>
+                        <TableCell align="right">Cantidad</TableCell>
+                        <TableCell align="right">Precio</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -162,7 +163,7 @@ function PlaceOrder() {
                             <Typography>{item.quantity}</Typography>
                           </TableCell>
                           <TableCell align="right">
-                            <Typography>${item.price}</Typography>
+                            <Typography><DivisaFormater value={item.price} /></Typography>
                           </TableCell>
                         </TableRow>
                       ))}
@@ -177,15 +178,15 @@ function PlaceOrder() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography variant="h2">Order Summary</Typography>
+                <Typography variant="h2">Resumen de Pedido</Typography>
               </ListItem>
               <ListItem>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography>Items:</Typography>
+                    <Typography>Articulos:</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography align="right">${itemsPrice}</Typography>
+                    <Typography align="right"><DivisaFormater value={itemsPrice} /></Typography>
                   </Grid>
                 </Grid>
               </ListItem>
@@ -195,17 +196,17 @@ function PlaceOrder() {
                     <Typography>Tax:</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography align="right">${taxPrice}</Typography>
+                    <Typography align="right"><DivisaFormater value={taxPrice} /></Typography>
                   </Grid>
                 </Grid>
               </ListItem>
               <ListItem>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography>Shipping:</Typography>
+                    <Typography>Envio:</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography align="right">${shippingPrice}</Typography>
+                    <Typography align="right"> <DivisaFormater value={shippingPrice} /></Typography>
                   </Grid>
                 </Grid>
               </ListItem>
@@ -218,7 +219,7 @@ function PlaceOrder() {
                   </Grid>
                   <Grid item xs={6}>
                     <Typography align="right">
-                      <strong>${totalPrice}</strong>
+                      <strong> <DivisaFormater value={totalPrice} /></strong>
                     </Typography>
                   </Grid>
                 </Grid>
@@ -230,7 +231,7 @@ function PlaceOrder() {
                   color="secondary"
                   fullWidth
                 >
-                  Place Order
+                  Realizar Pedido
                 </Button>
               </ListItem>
               {loading && (

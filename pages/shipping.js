@@ -78,11 +78,11 @@ export default function Shipping() {
     router.push('/map');
   };
   return (
-    <Layout title="Shipping Address">
+    <Layout title="Datos de Envio" type={1}>
       <CheckoutWizard activeStep={1} />
       <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
         <Typography component="h1" variant="h1">
-          Shipping Address
+          Direccion de Envio
         </Typography>
         <List>
           <ListItem>
@@ -99,7 +99,7 @@ export default function Shipping() {
                   variant="outlined"
                   fullWidth
                   id="fullName"
-                  label="Full Name"
+                  label="Nombre"
                   error={Boolean(errors.fullName)}
                   helperText={
                     errors.fullName
@@ -127,7 +127,7 @@ export default function Shipping() {
                   variant="outlined"
                   fullWidth
                   id="address"
-                  label="Address"
+                  label="Direccion"
                   error={Boolean(errors.address)}
                   helperText={
                     errors.address
@@ -155,7 +155,7 @@ export default function Shipping() {
                   variant="outlined"
                   fullWidth
                   id="city"
-                  label="City"
+                  label="Ciudad"
                   error={Boolean(errors.city)}
                   helperText={
                     errors.city
@@ -183,7 +183,7 @@ export default function Shipping() {
                   variant="outlined"
                   fullWidth
                   id="postalCode"
-                  label="Postal Code"
+                  label="Telefono"
                   error={Boolean(errors.postalCode)}
                   helperText={
                     errors.postalCode
@@ -211,7 +211,7 @@ export default function Shipping() {
                   variant="outlined"
                   fullWidth
                   id="country"
-                  label="Country"
+                  label="Pais"
                   error={Boolean(errors.country)}
                   helperText={
                     errors.country
@@ -231,7 +231,7 @@ export default function Shipping() {
               type="button"
               onClick={chooseLocationHandler}
             >
-              Choose on map
+              Buscar en el mapa
             </Button>
             <Typography>
               {location.lat && `${location.lat}, ${location.lat}`}
@@ -239,7 +239,7 @@ export default function Shipping() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="secondary">
-              Continue
+              Continuar
             </Button>
           </ListItem>
         </List>

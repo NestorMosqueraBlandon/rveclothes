@@ -28,7 +28,9 @@ export default function Header({back}) {
         </Link>
         ) :
         (
-          <i className="bx bx-menu"></i>
+      <div></div>
+
+          // <i className="bx bx-menu"></i>
        ) 
       }
       </button>
@@ -39,7 +41,8 @@ export default function Header({back}) {
         <div className={styles.logo}> atope</div>
 
       )}
-      <Switch checked={darkMode} onChange={darkModeChangeHandler}></Switch>
+      <div></div>
+      {/* <Switch checked={darkMode} onChange={darkModeChangeHandler}></Switch> */}
     </header>
   );
 }

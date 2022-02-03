@@ -51,7 +51,7 @@ export default function Login() {
     }
   };
   return (
-    <Layout title="Login">
+    <Layout title="Iniciar Sesion" type={1}>
       <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
         <Typography component="h1" variant="h1">
           Iniciar Sesion

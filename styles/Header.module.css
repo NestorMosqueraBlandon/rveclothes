@@ -37,3 +37,10 @@
     font-size: 2rem;
     font-weight: 600;
 }
+
+@media screen and (min-width:800px) {
+    .header{
+        width: 500px;
+        max-width: 500px;
+    }
+}

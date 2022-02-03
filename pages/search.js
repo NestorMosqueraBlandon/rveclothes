@@ -16,12 +16,13 @@ import db from '../utils/db';
 import Product from '../models/Product';
 import useStyles from '../utils/styles';
 import ProductItem from '../components/ProductItem';
+import ProductCard from '../components/ProductCard';
 import { Store } from '../utils/Store';
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 import { Pagination } from '@material-ui/lab';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 10;
 
 const prices = [
   {
@@ -113,7 +114,7 @@ export default function Search(props) {
     router.push('/cart');
   };
   return (
-    <Layout title="Search">
+    <Layout title="Search" type={1}>
       <Grid className={classes.mt1} container spacing={1}>
         <Grid item md={3}>
           <List>
@@ -207,14 +208,17 @@ export default function Search(props) {
             </Grid>
           </Grid>
           <Grid className={classes.mt1} container spacing={3}>
+            <div className='grid'>
+
             {products.map((product) => (
-              <Grid item md={4} key={product.name}>
-                <ProductItem
-                  product={product}
-                  addToCartHandler={addToCartHandler}
-                />
-              </Grid>
-            ))}
+              
+              <ProductCard
+              key={product.name} 
+              product={product}
+              addToCartHandler={addToCartHandler}
+              />
+              ))}
+              </div>
           </Grid>
           <Pagination
             className={classes.mt1}

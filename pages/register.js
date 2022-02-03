@@ -56,10 +56,10 @@ export default function Register() {
     }
   };
   return (
-    <Layout title="Register">
+    <Layout title="Registro" type={1}>
       <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
         <Typography component="h1" variant="h1">
-          Register
+          Registro
         </Typography>
         <List>
           <ListItem>
@@ -76,7 +76,7 @@ export default function Register() {
                   variant="outlined"
                   fullWidth
                   id="name"
-                  label="Name"
+                  label="Nombre"
                   inputProps={{ type: 'name' }}
                   error={Boolean(errors.name)}
                   helperText={
@@ -105,7 +105,7 @@ export default function Register() {
                   variant="outlined"
                   fullWidth
                   id="email"
-                  label="Email"
+                  label="Correo"
                   inputProps={{ type: 'email' }}
                   error={Boolean(errors.email)}
                   helperText={
@@ -134,7 +134,7 @@ export default function Register() {
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="Password"
+                  label="Contrasena"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={
@@ -163,7 +163,7 @@ export default function Register() {
                   variant="outlined"
                   fullWidth
                   id="confirmPassword"
-                  label="Confirm Password"
+                  label="Confirma la Contrasena"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.confirmPassword)}
                   helperText={
@@ -180,13 +180,13 @@ export default function Register() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="secondary">
-              Register
+              Registrarse
             </Button>
           </ListItem>
           <ListItem>
-            Already have an account? &nbsp;
+            Ya tienes una cuentab? &nbsp;
             <NextLink href={`/login?redirect=${redirect || '/'}`} passHref>
-              <Link>Login</Link>
+              <Link>Iniciar Sesion</Link>
             </NextLink>
           </ListItem>
         </List>

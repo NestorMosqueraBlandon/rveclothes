@@ -46,3 +46,11 @@
 .footerListTwo .list:last-child{
     box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
 }
+
+@media screen and (min-width:800px) {
+    .list{
+        width: 500px;
+        max-width: 500px;
+        left: 30%;
+    }
+}

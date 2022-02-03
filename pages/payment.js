@@ -45,11 +45,11 @@ export default function Payment() {
     }
   };
   return (
-    <Layout title="Payment Method">
+    <Layout title="Payment Method" type={1}>
       <CheckoutWizard activeStep={2}></CheckoutWizard>
       <form className={classes.form} onSubmit={submitHandler}>
         <Typography component="h1" variant="h1">
-          Payment Method
+          Metodo de Pago
         </Typography>
         <List>
           <ListItem>
@@ -61,18 +61,13 @@ export default function Payment() {
                 onChange={(e) => setPaymentMethod(e.target.value)}
               >
                 <FormControlLabel
-                  label="PayPal"
-                  value="PayPal"
+                  label="MercadoPago"
+                  value="MercadoPago"
                   control={<Radio />}
                 ></FormControlLabel>
                 <FormControlLabel
-                  label="Stripe"
-                  value="Stripe"
-                  control={<Radio />}
-                ></FormControlLabel>
-                <FormControlLabel
-                  label="Cash"
-                  value="Cash"
+                  label="Transferencia"
+                  value="Transferencia"
                   control={<Radio />}
                 ></FormControlLabel>
               </RadioGroup>
@@ -80,7 +75,7 @@ export default function Payment() {
           </ListItem>
           <ListItem>
             <Button fullWidth type="submit" variant="contained" color="secondary">
-              Continue
+              Continuar
             </Button>
           </ListItem>
           <ListItem>
@@ -90,7 +85,7 @@ export default function Payment() {
               variant="contained"
               onClick={() => router.push('/shipping')}
             >
-              Back
+              Volver
             </Button>
           </ListItem>
         </List>
