@@ -91,8 +91,9 @@ export default function ProductScreen(props) {
 
       setText(city + ", " + state + ", " + country);
     };
+
     const onError = (error) => {
-      if (error.code == 1) {
+      if(error.code == 1) {
         setText("Has denegado la peticion");
       } else if (error.code == 2) {
         setText("Ubicacion no disp");
@@ -105,6 +106,7 @@ export default function ProductScreen(props) {
       navigator.geolocation.getCurrentPosition(onSuccess, onError);
     } else {
       setText("Tu navegador no soporta la geolocalizacion");
+      return;
     }
   }, []);
 
