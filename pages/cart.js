@@ -3,23 +3,8 @@ import dynamic from 'next/dynamic';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 import NextLink from 'next/link';
-import Image from 'next/image';
 import {
-  Grid,
-  TableContainer,
-  Table,
-  Typography,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
   Link,
-  Select,
-  MenuItem,
-  Button,
-  Card,
-  List,
-  ListItem,
 } from '@material-ui/core';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -60,7 +45,7 @@ function CartScreen() {
       ) : (
         <div className={styles.container}>
           {cartItems.map((item) => (
-          <div className={styles.box}>
+          <div key={imte.name} className={styles.box}>
             <div className={styles.boxHeader}>
              <h3>{item.name}</h3>
              <span>Marca: {item.brand}</span>
