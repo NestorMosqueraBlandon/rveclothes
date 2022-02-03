@@ -31,17 +31,20 @@ export default function Home(props) {
   };
   return (
     <Layout type={1}>
+      <div className='spand'>
+
       <CardLocation />
       <h2 className='title'>Productos Populares</h2>
       <div className='grid'>
         {topRatedProducts.map((product) => (
             <ProductCard
-              key={product.name}
-              product={product}
-              addToCartHandler={addToCartHandler}
+            key={product.name}
+            product={product}
+            addToCartHandler={addToCartHandler}
             />
-        ))}
+            ))}
       </div>
+            </div>
     </Layout>
   );
 }
