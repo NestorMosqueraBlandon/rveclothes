@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../styles/ProductCard.module.css'
 import Link from 'next/link';
+import Image from 'next/image';
 import Rating from '@material-ui/lab/Rating';
 import DivisaFormater from '/components/DivisaFormater';
 
@@ -10,7 +11,7 @@ export default function ProductCard({product, addToCartHandler}) {
           <Link href={`/product/${product.slug}`}>
                <a>
                    <picture>
-                       <img src={product.image} alt={product.name} title={product.name} />
+                       <Image src={product.image} alt={product.name} title={product.name} />
                    </picture>
                    <h2>{product.name}</h2>
                    <Rating value={product.rating} readOnly></Rating>
