@@ -78,38 +78,38 @@ export default function ProductScreen(props) {
     router.push("/cart");
   };
 
-  const [text, setText] = useState("");
+  // const [text, setText] = useState("");
 
-  useEffect(() => {
-    const onSuccess = async (position) => {
-      const { latitude, longitude } = position.coords;
+  // useEffect(() => {
+  //   const onSuccess = async (position) => {
+  //     const { latitude, longitude } = position.coords;
 
-      const response = await fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=4f99fa44f4f4435db7411d3f72b3c8f7&language=es&pretty=1            `
-      );
-      const result = await response.json();
-      const { city, country, state } = result.results[0].components;
+  //     const response = await fetch(
+  //       `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=4f99fa44f4f4435db7411d3f72b3c8f7&language=es&pretty=1            `
+  //     );
+  //     const result = await response.json();
+  //     const { city, country, state } = result.results[0].components;
 
-      setText(city + ", " + state + ", " + country);
-    };
+  //     setText(city + ", " + state + ", " + country);
+  //   };
 
-    const onError = (error) => {
-      if(error.code == 1) {
-        setText("Has denegado la peticion");
-      } else if (error.code == 2) {
-        setText("Ubicacion no disp");
-      } else {
-        setText("Algo salio mal");
-      }
-    };
+  //   const onError = (error) => {
+  //     if(error.code == 1) {
+  //       setText("Has denegado la peticion");
+  //     } else if (error.code == 2) {
+  //       setText("Ubicacion no disp");
+  //     } else {
+  //       setText("Algo salio mal");
+  //     }
+  //   };
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    } else {
-      setText("Tu navegador no soporta la geolocalizacion");
-      return;
-    }
-  }, []);
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(onSuccess, onError);
+  //   } else {
+  //     setText("Tu navegador no soporta la geolocalizacion");
+  //     return;
+  //   }
+  // }, []);
 
   return (
     <Layout
@@ -139,7 +139,7 @@ export default function ProductScreen(props) {
             <div className={styles.flex}>
               <div>
                 <i className="bx bx-map"></i>
-                <span>{text}</span>
+                {/* <span>{text}</span> */}
               </div>
               <div>
                 <p>Envio Gratis</p>
