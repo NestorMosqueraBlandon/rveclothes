@@ -23,7 +23,7 @@ export default function Header({back}) {
       (
         <Link href="/">
         <a>
-          <i class='bx bx-arrow-back'></i>
+          <i className='bx bx-arrow-back'></i>
         </a>
         </Link>
         ) :

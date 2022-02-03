@@ -28,9 +28,9 @@ function CartScreen() {
   const removeItemHandler = (item) => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
   };
-  const checkoutHandler = () => {
-    router.push('/shipping');
-  };
+  // const checkoutHandler = () => {
+  //   router.push('/shipping');
+  // };
   return (
     <Layout title="Carrito" type={2} subtotal={cartItems.reduce((a, c) => a + c.quantity * c.price, 0)} >
       <h2 className={styles.title}>Carrito <span>({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
@@ -45,7 +45,7 @@ function CartScreen() {
       ) : (
         <div className={styles.container}>
           {cartItems.map((item) => (
-          <div key={imte.name} className={styles.box}>
+          <div key={item.name} className={styles.box}>
             <div className={styles.boxHeader}>
              <h3>{item.name}</h3>
              <span>Marca: {item.brand}</span>
@@ -56,7 +56,7 @@ function CartScreen() {
               </picture>
               <div>
                 <span className={styles.flexLeft}><p className={styles.availible}>Disponible</p> <p className={styles.send}>Envio Gratis</p></span>
-                <span className={styles.amount}>Cantidad: {item.quantity > 1?  <button onClick={() => updateCartHandler(item, item.quantity -1)}><i class='bx bx-minus-circle' ></i></button> : <button onClick={() => removeItemHandler(item)}><i class='bx bx-trash'></i> </button> } <span>{item.quantity} </span>  <button><i class='bx bx-plus' ></i> </button> </span>
+                <span className={styles.amount}>Cantidad: {item.quantity > 1?  <button onClick={() => updateCartHandler(item, item.quantity -1)}><i className='bx bx-minus-circle' ></i></button> : <button onClick={() => removeItemHandler(item)}><i className='bx bx-trash'></i> </button> } <span>{item.quantity} </span>  <button><i className='bx bx-plus' ></i> </button> </span>
               </div>
             </div>
             <div className={styles.boxFooter}>
