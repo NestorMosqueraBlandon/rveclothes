@@ -11,7 +11,7 @@ export default function ProductCard({product, addToCartHandler}) {
           <Link href={`/product/${product.slug}`}>
                <a>
                    <picture>
-                       <Image src={product.image} alt={product.name} title={product.name} />
+                       <Image src={product.image} alt={product.name} title={product.name} width={150} height={150} />
                    </picture>
                    <h2>{product.name}</h2>
                    <Rating value={product.rating} readOnly></Rating>

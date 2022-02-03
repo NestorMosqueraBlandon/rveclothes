@@ -53,7 +53,7 @@ function CartScreen() {
             </div>
             <div className={styles.boxContent}>
               <picture>
-                <Image src={item.image} alt={item.name} />
+                <Image src={item.image} alt={item.name} width={150} height={150} />
               </picture>
               <div>
                 <span className={styles.flexLeft}><p className={styles.availible}>Disponible</p> <p className={styles.send}>Envio Gratis</p></span>

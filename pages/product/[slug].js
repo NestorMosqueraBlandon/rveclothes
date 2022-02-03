@@ -122,7 +122,7 @@ export default function ProductScreen(props) {
     >
       <div className={styles.container}>
         <picture>
-        <Image src={product.image} alt={product.name} />
+        <Image src={product.image} alt={product.name} width={350} height={450} />
         </picture>
         <div className={styles.bottomCard}>
           <div className={styles.section}>
